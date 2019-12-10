@@ -1,0 +1,4 @@
+rootProject.name = 'logback-s3-rolling'
+include 'logback-s3-rolling'
+include 'main'
+
