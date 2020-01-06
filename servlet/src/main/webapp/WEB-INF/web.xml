@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
+	<display-name>log-test</display-name>
+
+<!--	<servlet>-->
+<!--		<servlet-name>pattern</servlet-name>-->
+<!--		<servlet-class>com.forcs.eformbot.core.server.container.PatternContainer</servlet-class>-->
+<!--		<init-param>-->
+<!--			<param-name>jersey.config.server.provider.classnames</param-name>-->
+<!--			<param-value>com.forcs.eformbot.core.server.resource.PatternResource</param-value>-->
+<!--		</init-param>-->
+<!--		<async-supported>true</async-supported>-->
+<!--	</servlet>-->
+<!--	<servlet-mapping>-->
+<!--		<servlet-name>pattern</servlet-name>-->
+<!--		<url-pattern>/v1/pattern/*</url-pattern>-->
+<!--	</servlet-mapping>-->
+
+<!--	<servlet>-->
+<!--		<servlet-name>intent</servlet-name>-->
+<!--		<servlet-class>com.forcs.eformbot.core.server.container.IntentContainer</servlet-class>-->
+<!--		<init-param>-->
+<!--			<param-name>jersey.config.server.provider.classnames</param-name>-->
+<!--			<param-value>com.forcs.eformbot.core.server.resource.IntentResource</param-value>-->
+<!--		</init-param>-->
+<!--	</servlet>-->
+<!--	<servlet-mapping>-->
+<!--		<servlet-name>intent</servlet-name>-->
+<!--		<url-pattern>/v1/intent/*</url-pattern>-->
+<!--	</servlet-mapping>-->
+
+<!--	<servlet>-->
+<!--		<servlet-name>pos</servlet-name>-->
+<!--		<servlet-class>com.forcs.eformbot.core.server.container.PosContainer</servlet-class>-->
+<!--		<init-param>-->
+<!--			<param-name>jersey.config.server.provider.classnames</param-name>-->
+<!--			<param-value>com.forcs.eformbot.core.server.resource.PosResource</param-value>-->
+<!--		</init-param>-->
+<!--	</servlet>-->
+<!--	<servlet-mapping>-->
+<!--		<servlet-name>pos</servlet-name>-->
+<!--		<url-pattern>/v1/pos/*</url-pattern>-->
+<!--	</servlet-mapping>-->
+
+<!--	<servlet>-->
+<!--		<servlet-name>ozd</servlet-name>-->
+<!--		<servlet-class>com.forcs.eformbot.core.server.container.OzdContainer</servlet-class>-->
+<!--		<init-param>-->
+<!--			<param-name>jersey.config.server.provider.classnames</param-name>-->
+<!--			<param-value>com.forcs.eformbot.core.server.resource.OzdResource</param-value>-->
+<!--		</init-param>-->
+<!--	</servlet>-->
+<!--	<servlet-mapping>-->
+<!--		<servlet-name>ozd</servlet-name>-->
+<!--		<url-pattern>/v1/ozd/*</url-pattern>-->
+<!--	</servlet-mapping>-->
+
+	<listener>
+		<listener-class>com.illdangag.servlet.context.ContextListener</listener-class>
+	</listener>
+</web-app>

@@ -1,0 +1,22 @@
+plugins {
+    id 'war'
+}
+
+group 'com.illdangag.logback.rolling'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile project(':logback-s3-rolling')
+
+    compile group: 'javax.servlet', name: 'javax.servlet-api', version:'3.1.0'
+    compile group: 'org.glassfish.jersey.containers', name: 'jersey-container-servlet', version:'2.27'
+    compile group: 'org.glassfish.jersey.inject', name: 'jersey-hk2', version:'2.27'
+    compile group: 'org.glassfish.jersey.media', name: 'jersey-media-json-jackson', version:'2.27'
+    testCompile group: 'org.glassfish.jersey.test-framework.providers', name: 'jersey-test-framework-provider-grizzly2', version: '2.27'
+}
