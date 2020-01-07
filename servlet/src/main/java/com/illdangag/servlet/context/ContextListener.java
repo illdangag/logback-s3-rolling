@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
+import java.io.File;
 
 public class ContextListener implements ServletContextListener {
 	public static final Logger logger = LoggerFactory.getLogger("");
@@ -26,7 +27,9 @@ public class ContextListener implements ServletContextListener {
 			@Override
 			public void shutdown(CustomSizeAndTimeBasedRollingPolicy policy) {
 				System.out.println("======== shutdown - " + policy);
-				policy.rollover();
+                if (policy.isTriggeringEvent(new File(policy.getActiveFileName()), null)) {
+                    policy.rollover();
+                }
 			}
 		};
 

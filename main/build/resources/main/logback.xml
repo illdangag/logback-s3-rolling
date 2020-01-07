@@ -32,14 +32,31 @@
             <fileNamePattern>log/user-%d{yyyy-MM-dd_HH-mm-ss}.%i.txt</fileNamePattern>
             <maxFileSize>100MB</maxFileSize>
         </rollingPolicy>
+
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
             <pattern>${pattern}</pattern>
         </encoder>
     </appender>
 
+<!--    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">-->
+<!--        <file>log/fixedLog.txt</file>-->
+<!--        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">-->
+<!--            <fileNamePattern>log/fixedLog_%i.txt</fileNamePattern>-->
+<!--            <minIndex>1</minIndex>-->
+<!--            <maxIndex>20</maxIndex>-->
+<!--        </rollingPolicy>-->
+<!--        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">-->
+<!--            <maxFileSize>1KB</maxFileSize>-->
+<!--        </triggeringPolicy>-->
+<!--        <encoder>-->
+<!--            <pattern>${pattern}</pattern>-->
+<!--        </encoder>-->
+<!--    </appender>-->
+
     <root level="TRACE">
         <appender-ref ref="STDOUT" />
         <appender-ref ref="ROLLING-system" />
         <appender-ref ref="ROLLING-user" />
+<!--        <appender-ref ref="FILE" />-->
     </root>
 </configuration>

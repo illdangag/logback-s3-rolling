@@ -1,11 +1,13 @@
 package com.illdangag.main;
 
 import com.forcs.eformbot.common.log.LogMarker;
-import com.forcs.eformbot.common.log.policy.ICustomRolloverEventListener;
 import com.forcs.eformbot.common.log.policy.CustomSizeAndTimeBasedRollingPolicy;
+import com.forcs.eformbot.common.log.policy.ICustomRolloverEventListener;
 import com.forcs.eformbot.common.log.policy.ICustomShutdownEventListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.io.File;
 
 public class AppMain {
     public static final Logger logger = LoggerFactory.getLogger("");
@@ -21,7 +23,9 @@ public class AppMain {
             @Override
             public void shutdown(CustomSizeAndTimeBasedRollingPolicy policy) {
                 System.out.println("======== shutdown - " + policy);
-                policy.rollover();
+                if (policy.isTriggeringEvent(new File(policy.getActiveFileName()), null)) {
+                    policy.rollover();
+                }
             }
         };
 

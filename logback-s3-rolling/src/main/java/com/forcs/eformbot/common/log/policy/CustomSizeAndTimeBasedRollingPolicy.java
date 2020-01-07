@@ -16,12 +16,11 @@ public class CustomSizeAndTimeBasedRollingPolicy<E> extends SizeAndTimeBasedRoll
 
     @Override
     public void rollover() {
-        isTriggeringEvent(null, null);
         super.rollover();
-
         if (CustomSizeAndTimeBasedRollingPolicy.rolloverEventListener != null) {
             TimeBasedFileNamingAndTriggeringPolicy<E> timeBasedFileNamingAndTriggeringPolicy = this.getTimeBasedFileNamingAndTriggeringPolicy();
             String filePath = timeBasedFileNamingAndTriggeringPolicy.getElapsedPeriodsFileName();
+
             CustomSizeAndTimeBasedRollingPolicy.rolloverEventListener.rollover(filePath);
         }
     }
