@@ -16,25 +16,25 @@ public class ContextListener implements ServletContextListener {
 
 	@Override
 	public void contextInitialized(ServletContextEvent sce) {
-		System.out.println(this.getClass().getResource("").getPath());
 		ICustomRolloverEventListener rolloverEventListener = new ICustomRolloverEventListener() {
 			@Override
 			public void rollover(String filePath) {
 				System.out.println("======== rollover - " + filePath);
+				File rollFile = new File(filePath);
+				System.out.println(rollFile.exists());
 			}
 		};
 		ICustomShutdownEventListener shutDownEventListener = new ICustomShutdownEventListener() {
 			@Override
 			public void shutdown(CustomSizeAndTimeBasedRollingPolicy policy) {
 				System.out.println("======== shutdown - " + policy);
-                if (policy.isTriggeringEvent(new File(policy.getActiveFileName()), null)) {
-                    policy.rollover();
-                }
+				System.out.println(policy.getActiveFileName());
+				System.out.println(policy.getTimeBasedFileNamingAndTriggeringPolicy().getCurrentPeriodsFileNameWithoutCompressionSuffix());
 			}
 		};
 
 		CustomSizeAndTimeBasedRollingPolicy.setRolloverEventListener(rolloverEventListener);
-		CustomSizeAndTimeBasedRollingPolicy.setShutDownEventListener(shutDownEventListener);
+		CustomSizeAndTimeBasedRollingPolicy.setShutdownEventListener(shutDownEventListener);
 
 		for (int i = 0; i < 30; i++) {
 			try {
@@ -50,6 +50,6 @@ public class ContextListener implements ServletContextListener {
 
 	@Override
 	public void contextDestroyed(ServletContextEvent sce) {
-		System.out.println("contextDestroyed");
+		CustomSizeAndTimeBasedRollingPolicy.shutdown();
 	}
 }

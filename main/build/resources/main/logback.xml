@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration scan="true" scanPeriod="30 seconds" debug="true">
     <property name="pattern" value="[%d{yyyy-MM-dd_HH:mm:ss.SSS, GMT}][%thread][%-5level] %-35caller - [%category] %msg%n" />
+    <property name="logPath" value="/log" />
 
     <conversionRule conversionWord="caller" converterClass="com.forcs.eformbot.common.log.converter.CallerConverter" />
     <conversionRule conversionWord="category" converterClass="com.forcs.eformbot.common.log.converter.CategoryConverter" />
@@ -14,10 +15,10 @@
     <shutdownHook class="com.forcs.eformbot.common.log.hook.CustomDelayingShutdownHook" />
 
     <appender name="ROLLING-system" class="com.forcs.eformbot.common.log.appender.CustomRollingFileAppender">
-        <file>log/system.txt</file>
+        <file>${logPath}/system.txt</file>
         <category>system</category>
         <rollingPolicy class="com.forcs.eformbot.common.log.policy.CustomSizeAndTimeBasedRollingPolicy">
-            <fileNamePattern>log/system-%d{yyyy-MM-dd_HH-mm-ss}.%i.txt</fileNamePattern>
+            <fileNamePattern>${logPath}/system-%d{yyyy-MM-dd_HH-mm-ss}.%i.txt</fileNamePattern>
             <maxFileSize>100MB</maxFileSize>
         </rollingPolicy>
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
@@ -26,37 +27,20 @@
     </appender>
 
     <appender name="ROLLING-user" class="com.forcs.eformbot.common.log.appender.CustomRollingFileAppender">
-        <file>log/user.txt</file>
+        <file>${logPath}/user.txt</file>
         <category>user</category>
         <rollingPolicy class="com.forcs.eformbot.common.log.policy.CustomSizeAndTimeBasedRollingPolicy">
-            <fileNamePattern>log/user-%d{yyyy-MM-dd_HH-mm-ss}.%i.txt</fileNamePattern>
+            <fileNamePattern>${logPath}/user-%d{yyyy-MM-dd_HH-mm-ss}.%i.txt</fileNamePattern>
             <maxFileSize>100MB</maxFileSize>
         </rollingPolicy>
-
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
             <pattern>${pattern}</pattern>
         </encoder>
     </appender>
 
-<!--    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">-->
-<!--        <file>log/fixedLog.txt</file>-->
-<!--        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">-->
-<!--            <fileNamePattern>log/fixedLog_%i.txt</fileNamePattern>-->
-<!--            <minIndex>1</minIndex>-->
-<!--            <maxIndex>20</maxIndex>-->
-<!--        </rollingPolicy>-->
-<!--        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">-->
-<!--            <maxFileSize>1KB</maxFileSize>-->
-<!--        </triggeringPolicy>-->
-<!--        <encoder>-->
-<!--            <pattern>${pattern}</pattern>-->
-<!--        </encoder>-->
-<!--    </appender>-->
-
     <root level="TRACE">
         <appender-ref ref="STDOUT" />
         <appender-ref ref="ROLLING-system" />
         <appender-ref ref="ROLLING-user" />
-<!--        <appender-ref ref="FILE" />-->
     </root>
 </configuration>

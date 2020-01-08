@@ -1,7 +1,10 @@
 package com.forcs.eformbot.common.log.policy;
 
 import ch.qos.logback.core.rolling.*;
+import ch.qos.logback.core.util.FileSize;
 import com.forcs.eformbot.common.log.hook.CustomShutdownHook;
+
+import java.util.List;
 
 public class CustomSizeAndTimeBasedRollingPolicy<E> extends SizeAndTimeBasedRollingPolicy<E> {
 
@@ -29,11 +32,18 @@ public class CustomSizeAndTimeBasedRollingPolicy<E> extends SizeAndTimeBasedRoll
         CustomSizeAndTimeBasedRollingPolicy.rolloverEventListener = eventListener;
     }
 
-    public static void setShutDownEventListener(ICustomShutdownEventListener eventListener) {
+    public static void setShutdownEventListener(ICustomShutdownEventListener eventListener) {
         CustomSizeAndTimeBasedRollingPolicy.shutdownEventListener = eventListener;
     }
 
     public static ICustomShutdownEventListener getShutdownEventListener() {
         return CustomSizeAndTimeBasedRollingPolicy.shutdownEventListener;
+    }
+
+    public static void shutdown() {
+        List<CustomSizeAndTimeBasedRollingPolicy> policyList = CustomShutdownHook.getPolicyList();
+        for (CustomSizeAndTimeBasedRollingPolicy policy : policyList) {
+            CustomSizeAndTimeBasedRollingPolicy.getShutdownEventListener().shutdown(policy);
+        }
     }
 }
